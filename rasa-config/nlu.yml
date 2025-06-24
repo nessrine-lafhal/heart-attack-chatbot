@@ -1,0 +1,502 @@
+# Données d'entraînement NLU pour le Chatbot Cardiaque
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - salut
+    - bonjour
+    - hello
+    - bonsoir
+    - salut docteur
+    - bonjour docteur
+    - hey
+    - coucou
+
+- intent: goodbye
+  examples: |
+    - au revoir
+    - bye
+    - à bientôt
+    - merci au revoir
+    - goodbye
+    - à plus tard
+    - bonne journée
+
+- intent: affirm
+  examples: |
+    - oui
+    - bien sûr
+    - exactement
+    - c'est ça
+    - tout à fait
+    - absolument
+    - d'accord
+    - ok
+
+- intent: deny
+  examples: |
+    - non
+    - pas du tout
+    - jamais
+    - non merci
+    - ce n'est pas ça
+    - pas vraiment
+    - négatif
+
+- intent: ask_risk_factors
+  examples: |
+    - quels sont les facteurs de risque
+    - facteurs de risque cardiaque
+    - qu'est-ce qui cause une crise cardiaque
+    - risques pour le cœur
+    - facteurs de risque principaux
+    - causes crise cardiaque
+    - risques cardiaques
+    - facteurs prédisposants
+    - qu'est-ce qui augmente le risque
+    - principaux facteurs de risque
+
+- intent: ask_cholesterol
+  examples: |
+    - cholestérol élevé
+    - taux de cholestérol
+    - cholestérol et cœur
+    - interpréter cholestérol
+    - cholestérol normal
+    - cholestérol dangereux
+    - niveau cholestérol
+    - cholestérol hdl ldl
+    - que signifie cholestérol élevé
+    - cholestérol 250
+
+- intent: ask_blood_pressure
+  examples: |
+    - pression artérielle
+    - tension artérielle
+    - hypertension
+    - pression sanguine
+    - tension élevée
+    - pression normale
+    - interpréter tension
+    - 140/90 tension
+    - pression artérielle élevée
+    - hypotension
+
+- intent: ask_age_impact
+  examples: |
+    - âge et risque cardiaque
+    - impact de l'âge
+    - âge facteur de risque
+    - risque selon l'âge
+    - âge et cœur
+    - vieillissement cardiaque
+    - âge critique cœur
+    - à partir de quel âge
+    - âge moyen crise cardiaque
+    - seniors et cœur
+
+- intent: ask_chest_pain
+  examples: |
+    - douleur thoracique
+    - douleur poitrine
+    - mal à la poitrine
+    - douleur dans la poitrine
+    - angine de poitrine
+    - douleur cœur
+    - oppression thoracique
+    - serrement poitrine
+    - types douleur thoracique
+    - angine
+
+- intent: ask_exercise_test
+  examples: |
+    - test d'effort
+    - épreuve d'effort
+    - test exercice
+    - électrocardiogramme effort
+    - ECG effort
+    - test cardiaque
+    - examen effort
+    - évaluation cardiaque
+    - test stress cardiaque
+    - capacité effort
+
+- intent: ask_symptoms
+  examples: |
+    - symptômes crise cardiaque
+    - signes crise cardiaque
+    - symptômes infarctus
+    - comment reconnaître
+    - signes d'alerte
+    - symptômes cardiaques
+    - signes avant-coureurs
+    - symptômes urgents
+    - quand s'inquiéter
+    - signaux d'alarme
+
+- intent: ask_prevention
+  examples: |
+    - prévention cardiaque
+    - comment prévenir
+    - éviter crise cardiaque
+    - protection cœur
+    - prévenir infarctus
+    - conseils prévention
+    - habitudes saines
+    - mode de vie sain
+    - protéger son cœur
+    - prévention cardiovasculaire
+
+- intent: ask_diet
+  examples: |
+    - alimentation cœur
+    - régime cardiaque
+    - nourriture saine cœur
+    - aliments bons cœur
+    - diète cardiovasculaire
+    - nutrition cardiaque
+    - aliments éviter
+    - régime anti-cholestérol
+    - alimentation équilibrée
+    - conseils nutritionnels
+
+- intent: provide_patient_data
+  examples: |
+    - j'ai [57](age) ans
+    - je suis un [homme](gender)
+    - mon cholestérol est [240](cholesterol_level)
+    - ma tension est [150](blood_pressure)
+    - âge [45](age) ans
+    - cholestérol [300](cholesterol_level) mg/dl
+    - pression [140](blood_pressure) mmHg
+    - je suis une [femme](gender)
+    - [62](age) ans [masculin](gender)
+    - tension artérielle [160](blood_pressure)
+
+- intent: ask_interpretation
+  examples: |
+    - que signifie ce résultat
+    - interpréter mes analyses
+    - expliquer résultats
+    - comprendre analyses
+    - signification résultats
+    - analyser mes données
+    - évaluer mon risque
+    - interpréter bilan
+    - que veulent dire ces chiffres
+    - analyse de risque
+
+- intent: bot_challenge
+  examples: |
+    - es-tu un bot
+    - es-tu un robot
+    - es-tu humain
+    - qui es-tu
+    - qu'est-ce que tu es
+    - es-tu une IA
+    - es-tu artificiel
+    - tu es un chatbot
+    - es-tu réel
+    - type d'assistant
+
+- intent: ask_heart_rate
+  examples: |
+    - fréquence cardiaque maximale
+    - rythme cardiaque
+    - battements par minute
+    - fréquence cardiaque normale
+    - thalach signification
+    - fréquence cardiaque effort
+    - pouls rapide
+    - tachycardie
+    - bradycardie
+    - fréquence cardiaque 150
+    - mon cœur bat vite
+    - rythme cardiaque anormal
+
+- intent: ask_ecg_results
+  examples: |
+    - ECG au repos
+    - électrocardiogramme
+    - résultats ECG
+    - ECG normal
+    - anomalies ECG
+    - restecg interprétation
+    - onde T inversée
+    - segment ST
+    - rythme sinusal
+    - fibrillation
+    - ECG anormal
+    - lecture ECG
+
+- intent: ask_exercise_angina
+  examples: |
+    - angine d'effort
+    - douleur exercice
+    - essoufflement effort
+    - angine induite exercice
+    - exang signification
+    - douleur pendant sport
+    - oppression effort
+    - fatigue exercice
+    - douleur marche
+    - angine stable
+    - angine instable
+
+- intent: ask_st_depression
+  examples: |
+    - dépression ST
+    - oldpeak signification
+    - segment ST déprimé
+    - onde ST anormale
+    - dépression électrique
+    - ST sous-décalé
+    - ischémie ST
+    - oldpeak 2.0
+    - dépression 1mm
+    - anomalie ST
+    - sous-décalage ST
+
+- intent: ask_slope_analysis
+  examples: |
+    - pente ST
+    - slope signification
+    - pente segment ST
+    - montée ST
+    - descente ST
+    - pente effort
+    - slope 0 1 2
+    - analyse pente
+    - courbe ST
+    - pente électrique
+    - slope ECG
+
+- intent: ask_vessels_blocked
+  examples: |
+    - vaisseaux bloqués
+    - artères obstruées
+    - ca signification
+    - nombre artères
+    - coronaires bouchées
+    - sténose coronaire
+    - artères principales
+    - vaisseaux colorés
+    - cathétérisme
+    - angiographie
+    - coronarographie
+    - artères malades
+
+- intent: ask_thalassemia
+  examples: |
+    - thalassémie
+    - thal signification
+    - défaut réversible
+    - défaut fixe
+    - thalassémie normale
+    - trouble sanguin
+    - hémoglobine
+    - thal 1 2 3
+    - maladie génétique
+    - anémie méditerranéenne
+    - déficit thalassémie
+
+- intent: ask_fasting_sugar
+  examples: |
+    - glycémie à jeun
+    - sucre sanguin
+    - fbs signification
+    - diabète
+    - glucose sanguin
+    - glycémie élevée
+    - taux sucre
+    - hyperglycémie
+    - diabète type 2
+    - insuline
+    - glycémie 120
+    - sucre dans le sang
+
+- intent: ask_gender_risk
+  examples: |
+    - risque homme femme
+    - différence sexe
+    - homme plus risque
+    - femme protection
+    - hormones protection
+    - ménopause risque
+    - testostérone risque
+    - œstrogènes protection
+    - sexe facteur risque
+    - genre et cœur
+    - différence hommes femmes
+
+- intent: ask_chest_pain_types
+  examples: |
+    - types douleur thoracique
+    - cp 0 1 2 3
+    - angine typique
+    - angine atypique
+    - douleur non angineuse
+    - asymptomatique
+    - classification douleur
+    - types angine
+    - douleur cardiaque
+    - différents types douleur
+    - cp signification
+
+- intent: ask_risk_calculation
+  examples: |
+    - calculer mon risque
+    - évaluer risque
+    - score risque
+    - probabilité crise cardiaque
+    - mon niveau risque
+    - analyse personnalisée
+    - évaluation cardiaque
+    - diagnostic risque
+    - prédiction risque
+    - calcul probabilité
+    - estimation risque
+
+- intent: ask_dataset_statistics
+  examples: |
+    - statistiques dataset
+    - données patients
+    - combien patients
+    - âge moyen patients
+    - répartition hommes femmes
+    - statistiques étude
+    - données recherche
+    - échantillon étude
+    - population étudiée
+    - chiffres dataset
+
+- intent: ask_normal_values
+  examples: |
+    - valeurs normales
+    - seuils normaux
+    - références médicales
+    - valeurs saines
+    - normes laboratoire
+    - valeurs optimales
+    - seuils pathologiques
+    - limites normales
+    - références standards
+    - valeurs de référence
+
+- intent: ask_lifestyle_factors
+  examples: |
+    - mode de vie
+    - habitudes saines
+    - facteurs modifiables
+    - style de vie
+    - changements comportement
+    - habitudes quotidiennes
+    - facteurs environnementaux
+    - mode vie sain
+    - habitudes risque
+    - comportements santé
+
+- intent: ask_medication_effects
+  examples: |
+    - médicaments cœur
+    - traitements cardiaques
+    - effets médicaments
+    - pilules cœur
+    - traitement hypertension
+    - médicaments cholestérol
+    - statines
+    - bêta-bloquants
+    - inhibiteurs ECA
+    - anticoagulants
+
+- intent: ask_emergency_signs
+  examples: |
+    - signes urgence
+    - symptômes alarmants
+    - quand appeler urgences
+    - signes crise cardiaque
+    - symptômes infarctus
+    - urgence cardiaque
+    - signaux alarme
+    - symptômes graves
+    - quand s'inquiéter
+    - signes danger
+
+- intent: ask_family_history
+  examples: |
+    - antécédents familiaux
+    - hérédité cardiaque
+    - famille cœur
+    - génétique cardiaque
+    - parents crise cardiaque
+    - histoire familiale
+    - prédisposition génétique
+    - facteur héréditaire
+    - gènes cardiaques
+    - transmission familiale
+
+- intent: ask_stress_impact
+  examples: |
+    - stress et cœur
+    - impact stress
+    - stress cardiaque
+    - anxiété cœur
+    - tension nerveuse
+    - stress chronique
+    - émotions cœur
+    - stress facteur risque
+    - gestion stress
+    - relaxation cœur
+
+- intent: ask_smoking_effects
+  examples: |
+    - tabac et cœur
+    - cigarette risque
+    - fumeur cardiaque
+    - nicotine cœur
+    - arrêt tabac
+    - tabagisme passif
+    - effets cigarette
+    - poumons cœur
+    - tabac facteur risque
+    - sevrage tabagique
+
+- intent: ask_exercise_recommendations
+  examples: |
+    - exercice pour cœur
+    - sport cardiaque
+    - activité physique
+    - entraînement cœur
+    - exercice sécuritaire
+    - sport recommandé
+    - cardio training
+    - exercice thérapeutique
+    - réhabilitation cardiaque
+    - programme exercice
+
+- intent: ask_diet_heart
+  examples: |
+    - régime cardiaque
+    - alimentation cœur
+    - nourriture saine
+    - régime méditerranéen
+    - aliments protecteurs
+    - nutrition cardiaque
+    - aliments éviter
+    - régime anti-inflammatoire
+    - oméga 3
+    - fibres cœur
+
+- intent: ask_complications
+  examples: |
+    - complications crise cardiaque
+    - séquelles infarctus
+    - conséquences cœur
+    - après crise cardiaque
+    - récupération cœur
+    - complications cardiaques
+    - insuffisance cardiaque
+    - arythmies
+    - cicatrisation cœur
+    - pronostic cardiaque

@@ -1,0 +1,207 @@
+# Histoires de conversation pour le Chatbot Cardiaque
+version: "3.1"
+
+stories:
+
+- story: salutation simple
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_risk_factors
+  - action: utter_risk_factors
+
+- story: question facteurs de risque
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_risk_factors
+  - action: utter_risk_factors
+  - intent: ask_cholesterol
+  - action: utter_cholesterol_info
+
+- story: analyse cholestérol
+  steps:
+  - intent: ask_cholesterol
+  - action: utter_cholesterol_info
+  - intent: ask_blood_pressure
+  - action: utter_blood_pressure_info
+
+- story: information pression artérielle
+  steps:
+  - intent: ask_blood_pressure
+  - action: utter_blood_pressure_info
+  - intent: ask_age_impact
+  - action: utter_age_impact
+
+- story: impact de l'âge
+  steps:
+  - intent: ask_age_impact
+  - action: utter_age_impact
+  - intent: ask_prevention
+  - action: utter_default
+
+- story: douleur thoracique
+  steps:
+  - intent: ask_chest_pain
+  - action: utter_chest_pain_info
+  - intent: ask_symptoms
+  - action: utter_default
+
+- story: test d'effort
+  steps:
+  - intent: ask_exercise_test
+  - action: utter_exercise_test_info
+  - intent: ask_interpretation
+  - action: utter_default
+
+- story: données patient
+  steps:
+  - intent: provide_patient_data
+  - action: action_analyze_patient_risk
+  - intent: ask_interpretation
+  - action: action_interpret_results
+
+- story: conversation complète
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_risk_factors
+  - action: utter_risk_factors
+  - intent: provide_patient_data
+  - action: action_analyze_patient_risk
+  - intent: ask_cholesterol
+  - action: utter_cholesterol_info
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: défi bot
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+  - intent: ask_risk_factors
+  - action: utter_risk_factors
+
+- story: conversation médicale
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_symptoms
+  - action: utter_default
+  - intent: ask_chest_pain
+  - action: utter_chest_pain_info
+  - intent: ask_exercise_test
+  - action: utter_exercise_test_info
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: analyse complète patient
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: provide_patient_data
+  - action: action_analyze_patient_risk
+  - intent: ask_interpretation
+  - action: action_interpret_results
+  - intent: ask_prevention
+  - action: utter_default
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: questions multiples
+  steps:
+  - intent: ask_risk_factors
+  - action: utter_risk_factors
+  - intent: ask_age_impact
+  - action: utter_age_impact
+  - intent: ask_blood_pressure
+  - action: utter_blood_pressure_info
+  - intent: ask_cholesterol
+  - action: utter_cholesterol_info
+  - intent: ask_exercise_test
+  - action: utter_exercise_test_info
+
+- story: analyse fréquence cardiaque
+  steps:
+  - intent: ask_heart_rate
+  - action: utter_heart_rate_info
+  - intent: ask_normal_values
+  - action: utter_normal_values_info
+
+- story: résultats ECG
+  steps:
+  - intent: ask_ecg_results
+  - action: utter_ecg_results_info
+  - intent: ask_st_depression
+  - action: utter_st_depression_info
+
+- story: angine d'effort
+  steps:
+  - intent: ask_exercise_angina
+  - action: utter_exercise_angina_info
+  - intent: ask_emergency_signs
+  - action: utter_emergency_signs_info
+
+- story: analyse complète paramètres
+  steps:
+  - intent: ask_vessels_blocked
+  - action: utter_vessels_blocked_info
+  - intent: ask_thalassemia
+  - action: utter_thalassemia_info
+  - intent: ask_slope_analysis
+  - action: utter_slope_analysis_info
+
+- story: différences hommes femmes
+  steps:
+  - intent: ask_gender_risk
+  - action: utter_gender_risk_info
+  - intent: ask_dataset_statistics
+  - action: utter_dataset_statistics_info
+
+- story: types douleur thoracique
+  steps:
+  - intent: ask_chest_pain_types
+  - action: utter_chest_pain_types_info
+  - intent: ask_emergency_signs
+  - action: utter_emergency_signs_info
+
+- story: calcul risque personnalisé
+  steps:
+  - intent: ask_risk_calculation
+  - action: utter_risk_calculation_info
+  - intent: provide_patient_data
+  - action: action_analyze_patient_risk
+
+- story: glycémie et diabète
+  steps:
+  - intent: ask_fasting_sugar
+  - action: utter_fasting_sugar_info
+  - intent: ask_normal_values
+  - action: utter_normal_values_info
+
+- story: consultation médicale complète
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_chest_pain_types
+  - action: utter_chest_pain_types_info
+  - intent: ask_exercise_angina
+  - action: utter_exercise_angina_info
+  - intent: ask_heart_rate
+  - action: utter_heart_rate_info
+  - intent: ask_risk_calculation
+  - action: utter_risk_calculation_info
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: analyse technique approfondie
+  steps:
+  - intent: ask_ecg_results
+  - action: utter_ecg_results_info
+  - intent: ask_st_depression
+  - action: utter_st_depression_info
+  - intent: ask_slope_analysis
+  - action: utter_slope_analysis_info
+  - intent: ask_vessels_blocked
+  - action: utter_vessels_blocked_info
+  - intent: ask_thalassemia
+  - action: utter_thalassemia_info

@@ -1,0 +1,435 @@
+# Domaine Rasa pour le Chatbot Cardiaque
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - ask_risk_factors
+  - ask_cholesterol
+  - ask_blood_pressure
+  - ask_age_impact
+  - ask_chest_pain
+  - ask_exercise_test
+  - ask_symptoms
+  - ask_prevention
+  - ask_diet
+  - ask_medication
+  - provide_patient_data
+  - ask_interpretation
+
+entities:
+  - age
+  - gender
+  - cholesterol_level
+  - blood_pressure
+  - chest_pain_type
+  - heart_rate
+  - exercise_result
+
+slots:
+  patient_age:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: age
+  
+  patient_gender:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: gender
+  
+  cholesterol:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: cholesterol_level
+  
+  blood_pressure:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: blood_pressure
+
+responses:
+  utter_greet:
+  - text: "Bonjour ! Je suis votre assistant cardiaque IA. Je peux vous aider à analyser les risques de crise cardiaque basés sur 303 cas cliniques. Comment puis-je vous aider ?"
+
+  utter_goodbye:
+  - text: "Au revoir ! N'hésitez pas à revenir si vous avez d'autres questions sur la santé cardiaque."
+
+  utter_iamabot:
+  - text: "Je suis un assistant IA spécialisé en cardiologie, entraîné sur un dataset de 303 patients avec des crises cardiaques."
+
+  utter_risk_factors:
+  - text: |
+      Basé sur notre dataset de 303 patients, les principaux facteurs de risque cardiaque sont :
+      
+      🔴 **Facteurs majeurs :**
+      - Âge (moyenne: 54.4 ans dans notre dataset)
+      - Sexe (68% d'hommes dans les cas étudiés)
+      - Douleur thoracique (4 types analysés)
+      - Pression artérielle au repos
+      
+      🟡 **Facteurs biologiques :**
+      - Cholestérol sérique (moyenne: 246 mg/dL)
+      - Glycémie à jeun
+      - ECG au repos
+      
+      🟢 **Facteurs d'effort :**
+      - Fréquence cardiaque maximale
+      - Angine induite par l'exercice
+      - Dépression ST
+      
+      Voulez-vous des détails sur un facteur spécifique ?
+
+  utter_cholesterol_info:
+  - text: |
+      **Analyse du Cholestérol** 📊
+      
+      Dans notre dataset :
+      - Cholestérol moyen : ~246 mg/dL
+      - Patients à haut risque : souvent >300 mg/dL
+      - Patients à faible risque : généralement <200 mg/dL
+      
+      **Interprétation :**
+      - < 200 mg/dL : Optimal
+      - 200-239 mg/dL : Limite haute
+      - ≥ 240 mg/dL : Élevé (risque accru)
+      
+      **Recommandations :**
+      - Régime alimentaire adapté
+      - Exercice régulier
+      - Suivi médical si >240 mg/dL
+
+  utter_blood_pressure_info:
+  - text: |
+      **Analyse de la Pression Artérielle** 🩺
+      
+      Dans notre dataset (pression systolique au repos) :
+      - Moyenne : ~131 mmHg
+      - Plage : 94-200 mmHg
+      
+      **Classification :**
+      - Normal : < 120 mmHg
+      - Élevé : 120-129 mmHg
+      - Hypertension stade 1 : 130-139 mmHg
+      - Hypertension stade 2 : ≥ 140 mmHg
+      
+      **Impact sur le risque :**
+      - Chaque augmentation de 10 mmHg augmente le risque
+      - Hypertension = facteur de risque majeur modifiable
+
+  utter_age_impact:
+  - text: |
+      **Impact de l'Âge sur le Risque Cardiaque** 👥
+      
+      Analyse de notre dataset :
+      - Âge moyen des patients : 54.4 ans
+      - Répartition : 29-77 ans
+      - Risque croissant avec l'âge
+      
+      **Observations clés :**
+      - < 45 ans : Risque généralement faible
+      - 45-65 ans : Risque modéré à élevé
+      - > 65 ans : Surveillance accrue nécessaire
+      
+      **Facteurs associés à l'âge :**
+      - Rigidité artérielle
+      - Accumulation de facteurs de risque
+      - Diminution de la réserve cardiaque
+
+  utter_chest_pain_info:
+  - text: |
+      **Types de Douleur Thoracique** 💔
+      
+      Notre dataset analyse 4 types :
+      - **Type 0** : Angine typique
+      - **Type 1** : Angine atypique  
+      - **Type 2** : Douleur non-angineuse
+      - **Type 3** : Asymptomatique
+      
+      **Signification clinique :**
+      - Angine typique = risque élevé
+      - Douleur à l'effort = signe d'alerte
+      - Asymptomatique ≠ absence de risque
+      
+      **Quand consulter :**
+      - Douleur thoracique persistante
+      - Douleur irradiant vers le bras/mâchoire
+      - Essoufflement associé
+
+  utter_exercise_test_info:
+  - text: |
+      **Test d'Effort et Risque Cardiaque** 🏃‍♂️
+      
+      Variables analysées dans notre dataset :
+      - **Fréquence cardiaque maximale** : Capacité d'effort
+      - **Angine induite par l'exercice** : 32% des patients
+      - **Dépression ST** : Anomalie électrique
+      
+      **Interprétation :**
+      - Fréquence max normale : 220 - âge
+      - Angine à l'effort : signe d'alerte majeur
+      - Dépression ST > 1mm : significative
+      
+      **Signification clinique :**
+      - Test positif → Investigation approfondie
+      - Capacité d'effort réduite → Risque accru
+
+  utter_default:
+  - text: "Je ne suis pas sûr de comprendre. Pouvez-vous reformuler votre question sur la santé cardiaque ? Je peux vous aider avec les facteurs de risque, l'interprétation des résultats, ou l'analyse des symptômes."
+
+  utter_heart_rate_info:
+  - text: |
+      **Fréquence Cardiaque Maximale (thalach)** 💓
+      
+      Dans notre dataset :
+      - Moyenne : 149.6 bpm
+      - Plage : 71-202 bpm
+      - Formule théorique : 220 - âge
+      
+      **Interprétation :**
+      - Normale : proche de 220-âge
+      - Réduite : <85% de la théorique
+      - Facteur pronostic important
+      
+      **Signification clinique :**
+      - Capacité d'effort du cœur
+      - Réserve cardiaque
+      - Indicateur de forme physique
+
+  utter_ecg_results_info:
+  - text: |
+      **ECG au Repos (restecg)** 📈
+      
+      Classification dans notre dataset :
+      - **0** : Normal (54% des patients)
+      - **1** : Anomalie onde ST-T (38% des patients)
+      - **2** : Hypertrophie ventriculaire (8% des patients)
+      
+      **Signification :**
+      - Normal : Activité électrique saine
+      - Anomalie ST-T : Possible ischémie
+      - Hypertrophie : Épaississement muscle cardiaque
+      
+      **Importance :** ECG anormal = risque accru
+
+  utter_exercise_angina_info:
+  - text: |
+      **Angine Induite par l'Exercice (exang)** 🏃‍♂️💔
+      
+      Dans notre dataset :
+      - 32% des patients ont une angine d'effort
+      - Facteur de risque majeur identifié
+      
+      **Symptômes typiques :**
+      - Douleur thoracique à l'effort
+      - Essoufflement anormal
+      - Oppression dans la poitrine
+      - Fatigue excessive
+      
+      **Signification :** Irrigation insuffisante du muscle cardiaque
+      **Action :** Consultation cardiologique urgente si présente
+
+  utter_st_depression_info:
+  - text: |
+      **Dépression ST (oldpeak)** 📉
+      
+      Analyse de notre dataset :
+      - Moyenne : 1.04 mm
+      - Plage : 0-6.2 mm
+      - Seuil significatif : >1 mm
+      
+      **Interprétation :**
+      - 0-0.5 mm : Normal
+      - 0.5-1 mm : Limite
+      - >1 mm : Ischémie probable
+      - >2 mm : Ischémie sévère
+      
+      **Cause :** Manque d'oxygène au muscle cardiaque
+
+  utter_slope_analysis_info:
+  - text: |
+      **Pente du Segment ST (slope)** 📊
+      
+      Classification :
+      - **0** : Descendante (mauvais pronostic)
+      - **1** : Plate (pronostic intermédiaire)  
+      - **2** : Ascendante (bon pronostic)
+      
+      **Dans notre dataset :**
+      - 21% pente descendante
+      - 61% pente plate
+      - 18% pente ascendante
+      
+      **Signification :** Réponse du cœur à l'effort
+
+  utter_vessels_blocked_info:
+  - text: |
+      **Vaisseaux Colorés (ca)** 🩸
+      
+      Nombre d'artères principales obstruées :
+      - **0** : Aucune obstruction (58% des patients)
+      - **1** : Une artère (26% des patients)
+      - **2** : Deux artères (11% des patients)
+      - **3** : Trois artères (5% des patients)
+      
+      **Artères principales :**
+      - Artère descendante antérieure
+      - Artère circonflexe
+      - Artère coronaire droite
+      
+      **Plus d'artères obstruées = risque plus élevé**
+
+  utter_thalassemia_info:
+  - text: |
+      **Thalassémie (thal)** 🧬
+      
+      Types dans notre dataset :
+      - **1** : Normal (18% des patients)
+      - **2** : Défaut fixe (54% des patients)
+      - **3** : Défaut réversible (28% des patients)
+      
+      **Explication :**
+      - Normal : Perfusion cardiaque normale
+      - Défaut fixe : Cicatrice permanente
+      - Défaut réversible : Ischémie temporaire
+      
+      **Test :** Scintigraphie myocardique au thallium
+
+  utter_fasting_sugar_info:
+  - text: |
+      **Glycémie à Jeun (fbs)** 🍯
+      
+      Dans notre dataset :
+      - 85% ont une glycémie <120 mg/dL
+      - 15% ont une glycémie >120 mg/dL
+      
+      **Valeurs de référence :**
+      - Normal : <100 mg/dL
+      - Prédiabète : 100-125 mg/dL
+      - Diabète : ≥126 mg/dL
+      
+      **Impact :** Diabète double le risque cardiaque
+
+  utter_gender_risk_info:
+  - text: |
+      **Différence de Risque Homme/Femme** 👨👩
+      
+      Notre dataset montre :
+      - 68% d'hommes (207 patients)
+      - 32% de femmes (96 patients)
+      - Hommes plus touchés avant 65 ans
+      
+      **Facteurs protecteurs féminins :**
+      - Œstrogènes avant ménopause
+      - HDL plus élevé généralement
+      - Moins de tabagisme historiquement
+      
+      **Après ménopause :** Risque égal aux hommes
+
+  utter_chest_pain_types_info:
+  - text: |
+      **Types de Douleur Thoracique (cp)** 💔
+      
+      Classification détaillée :
+      - **Type 0** : Angine typique (23% des patients)
+        • Douleur constrictive
+        • Déclenchée par l'effort
+        • Soulagée par le repos
+      
+      - **Type 1** : Angine atypique (50% des patients)
+        • 2 des 3 critères typiques
+      
+      - **Type 2** : Douleur non-angineuse (16% des patients)
+        • 1 seul critère typique
+      
+      - **Type 3** : Asymptomatique (11% des patients)
+        • Aucun symptôme de douleur
+
+  utter_normal_values_info:
+  - text: |
+      **Valeurs Normales de Référence** 📋
+      
+      **Paramètres cardiovasculaires :**
+      - Pression artérielle : <120/80 mmHg
+      - Cholestérol total : <200 mg/dL
+      - Fréquence cardiaque repos : 60-100 bpm
+      - Glycémie à jeun : <100 mg/dL
+      
+      **Comparaison avec notre dataset :**
+      - Pression moyenne : 131 mmHg (élevée)
+      - Cholestérol moyen : 246 mg/dL (élevé)
+      - FC max moyenne : 149 bpm
+      - 15% ont glycémie >120 mg/dL
+
+  utter_emergency_signs_info:
+  - text: |
+      **Signes d'Urgence Cardiaque** 🚨
+      
+      **APPELEZ LE 15 IMMÉDIATEMENT si :**
+      - Douleur thoracique intense >20 minutes
+      - Douleur irradiant bras gauche/mâchoire
+      - Essoufflement soudain et sévère
+      - Sueurs froides + nausées
+      - Perte de connaissance
+      - Palpitations avec malaise
+      
+      **Basé sur notre dataset :**
+      - 85% avaient des douleurs thoraciques
+      - 32% avaient angine d'effort
+      - Détection précoce = meilleur pronostic
+
+  utter_dataset_statistics_info:
+  - text: |
+      **Statistiques de Notre Dataset** 📊
+      
+      **Population étudiée :**
+      - 303 patients total
+      - Âge : 29-77 ans (moyenne 54.4 ans)
+      - 68% hommes, 32% femmes
+      - 138 patients à haut risque (45.5%)
+      - 165 patients à faible risque (54.5%)
+      
+      **Origine géographique :** Cleveland, Hongrie, Suisse, Long Beach
+      **Période :** Données collectées sur plusieurs années
+      **Fiabilité :** Dataset validé scientifiquement
+
+  utter_risk_calculation_info:
+  - text: |
+      **Calcul de Votre Risque Cardiaque** 🧮
+      
+      **Notre modèle IA analyse :**
+      - Âge et sexe (facteurs non modifiables)
+      - Pression artérielle et cholestérol
+      - Type de douleur thoracique
+      - Résultats ECG et tests d'effort
+      - Glycémie et autres paramètres
+      
+      **Précision du modèle :** 87.5%
+      **Variables les plus importantes :**
+      1. Type de douleur thoracique (23%)
+      2. Fréquence cardiaque max (19%)
+      3. Dépression ST (16%)
+      4. Sexe (14%)
+      
+      Fournissez vos données pour une analyse personnalisée !
+
+actions:
+  - action_analyze_patient_risk
+  - action_provide_recommendations
+  - action_interpret_results
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
